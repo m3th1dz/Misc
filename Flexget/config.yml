@@ -45,8 +45,6 @@ tasks:
     priority: 1
     template: hdtv
     rss: https://ADDRESS_FOR_RSS_FEED.COM
-    email:
-      active: true
 
 # Run:  flexget execute --task seed_series_db --disable-advancement --learn    
 # to add existing episodes to flexget database

@@ -1,0 +1,59 @@
+#Flexget Config using Thetvdb favorites as input and pass downloads to SABnzbd+
+
+templates:
+  hdtv:
+    configure_series:
+      from:
+        thetvdb_favorites:
+          account_id: THETVDB_ACCOUNT_ID
+      settings:
+        quality: 720p+
+        propers: yes
+        specials: no
+    thetvdb_lookup: yes
+
+# SABnzdb Settings        
+    sabnzbd:
+      key: SABNZBD_API_KEY
+      url: http://IP_ADDRESS_FOR_SABNZBD:PORT/sabnzbd/api?
+      category: SABNZBD_CATEGORY
+
+# Notification Settings *Only Sends Email on errors
+    pushover:
+      userkey: PUSHOVER_USER_KEY
+      apikey: PUSHOVER_API_KEY
+      title: Downloading {{series_name}}
+      message: Episode {{series_id}}
+      url: http://IP_ADDRESS_FOR_SABNZBD:PORT/sabnzbd/api?
+      sound: Altair
+    
+    email:
+      from: EMAIL@EMAIL.COM
+      to: EMAIL@EMAIL.COM
+      template: failed
+      smtp_host: SMTP_HOST
+      smtp_port: PORT
+      smtp_login: True
+      smtp_username: EMAIL_USERNAME
+      smtp_password: EMAIL_PASSWORD
+      smtp_tls: false
+
+
+#  RSS Feeds
+tasks:
+  HDTV:
+    priority: 1
+    template: hdtv
+    rss: https://ADDRESS_FOR_RSS_FEED.COM
+    email:
+      active: true
+
+# Run:  flexget execute --task seed_series_db --disable-advancement --learn    
+# to add existing episodes to flexget database
+  seed_series_db:
+    all_series: yes
+    find:
+      regexp: .*(avi|mkv|mp4|mpg)$
+      path: PATH/TO/YOUR/TV_SHOWS
+      recursive: yes
+    manual: yes

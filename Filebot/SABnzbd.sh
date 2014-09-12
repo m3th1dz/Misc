@@ -7,14 +7,14 @@ FILE_NAME=$3
 
 filebot -script \
    fn:amc \
-   --output "/FileServer/Media" \
+   --output "/path/to/your/media" \
    --log-file amc.log \
    --action move \
    --conflict auto \
    --def music=n \
-   --def xbmc=192.168.11.21 \
-   --def plex=192.168.11.18 \
-   --def pushover=0bCZ8aVGC3YWxU2eGBsn9uB81RY1BA \
+   --def xbmc=127.0.0.1 \
+   --def plex=127.0.0.1 \
+   --def pushover= \
    --def artwork=y \
    --def subtitles=en \
    --def clean=y \
@@ -22,4 +22,4 @@ filebot -script \
    --def "terms=sample|trailer|etc" \
    --def "ut_dir=$FILE_PATH" \
    --def "ut_kind=multi" \
-   --def "ut_title=$FILE_NAME" \
+   --def "ut_title=$FILE_NAME" 
